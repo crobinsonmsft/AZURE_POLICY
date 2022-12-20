@@ -1,6 +1,6 @@
 {
     "properties": {
-      "displayName": "JKware - Require a Tag and its Value at request time",
+      "displayName": "Require a Tag and its Value at request time",
       "policyType": "Custom",
       "mode": "All",
       "description": "Require a Tag and its Value at request time",
@@ -87,10 +87,10 @@
     "type": "Microsoft.Authorization/policyDefinitions",
     "name": "f21d6816-8e02-49fa-8ad3-604ca6758512",
     "systemData": {
-      "createdBy": "calvintrobinson@gmail.com",
+      "createdBy": "user@user",
       "createdByType": "User",
       "createdAt": "2022-12-14T20:45:52.5331594Z",
-      "lastModifiedBy": "calvintrobinson@gmail.com",
+      "lastModifiedBy": "user@user",
       "lastModifiedByType": "User",
       "lastModifiedAt": "2022-12-14T21:44:34.8938162Z"
     }
