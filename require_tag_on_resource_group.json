@@ -1,0 +1,97 @@
+{
+    "properties": {
+      "displayName": "JKware - Require a Tag and its Value at request time",
+      "policyType": "Custom",
+      "mode": "All",
+      "description": "Require a Tag and its Value at request time",
+      "metadata": {
+        "category": "Tags",
+        "createdBy": "50182807-c15d-4a04-9515-7bd997880cd5",
+        "createdOn": "2022-12-14T20:45:52.6106099Z",
+        "updatedBy": "50182807-c15d-4a04-9515-7bd997880cd5",
+        "updatedOn": "2022-12-14T21:44:34.9284436Z"
+      },
+      "parameters": {
+        "tagName-01": {
+          "type": "String",
+          "metadata": {
+            "displayName": "tagName-01",
+            "description": "The agency Billing Code"
+          },
+          "allowedValues": [
+            "Billing Code"
+          ],
+          "defaultValue": "Billing Code"
+        },
+        "tagName-02": {
+          "type": "String",
+          "metadata": {
+            "displayName": "tagName-02",
+            "description": "The Agency Name"
+          },
+          "allowedValues": [
+            "Agency"
+          ],
+          "defaultValue": "Agency"
+        },
+        "tagValue-01": {
+          "type": "String",
+          "metadata": {
+            "displayName": "tagName-01's Value",
+            "description": "The Billing Code Values"
+          },
+          "allowedValues": [
+            "123",
+            "456",
+            "777"
+          ],
+          "defaultValue": "123"
+        },
+        "tagValue-02": {
+          "type": "String",
+          "metadata": {
+            "displayName": "tagName-02's Value",
+            "description": "List of Agency Names, like 'DPS'"
+          },
+          "allowedValues": [
+            "DPS",
+            "AEP",
+            "AGT"
+          ],
+          "defaultValue": "DPS"
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "not": {
+                "field": "[concat('tags[', parameters('tagName-01'), ']')]",
+                "equals": "[parameters('tagValue-01')]"
+              }
+            },
+            {
+              "not": {
+                "field": "[concat('tags[', parameters('tagName-02'), ']')]",
+                "equals": "[parameters('tagValue-02')]"
+              }
+            }
+          ]
+        },
+        "then": {
+          "effect": "audit"
+        }
+      }
+    },
+    "id": "/subscriptions/be5b442a-b163-4072-ac83-2cb81ef9654a/providers/Microsoft.Authorization/policyDefinitions/f21d6816-8e02-49fa-8ad3-604ca6758512",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "f21d6816-8e02-49fa-8ad3-604ca6758512",
+    "systemData": {
+      "createdBy": "calvintrobinson@gmail.com",
+      "createdByType": "User",
+      "createdAt": "2022-12-14T20:45:52.5331594Z",
+      "lastModifiedBy": "calvintrobinson@gmail.com",
+      "lastModifiedByType": "User",
+      "lastModifiedAt": "2022-12-14T21:44:34.8938162Z"
+    }
+  }
