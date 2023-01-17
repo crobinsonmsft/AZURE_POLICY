@@ -1,0 +1,58 @@
+{
+    "displayName":"Inherit a tag from the resource group if missing",
+    "policyType":"BuiltIn",
+    "mode":"All",
+    "description":"Adds or replaces the specified tag and value from the parent resource group when any resource is created or updated. Existing resources can be remediated by triggering a remediation task.",
+    "metadata":{
+        "version":"1.0.0",
+        "category":"Tags"
+    },
+        "parameters":{
+            "tagName":{
+                "type":"String",
+                "metadata":{
+                    "displayName":"Tag Name",
+                    "description":"Name of the tag, such as 'environment'"
+                }
+            },
+            "operation": {
+                "type":"String",
+                "allowedValues" : [
+                    "addOrReplace",
+                    "add"
+                ],
+                "defaultValue": "addOrReplace",
+                "metadata":{
+                    "displayName":"Operation",
+                    "description":"What operation would you like to apply?"
+                }
+            }
+        },
+        "policyRule":{
+            "if":{
+                "allOf":[
+                    {
+                        "field":"[concat('tags[', parameters('tagName'), ']')]",
+                        "notEquals": "[resourceGroup().tags[parameters('tagName')]]"
+                    },
+                    {
+                        "value":"[resourceGroup().tags[parameters('tagName')]]",
+                        "notEquals":""}
+                        ]
+            },
+            "then":{
+                "effect":"modify",
+                "details":{
+                    "roleDefinitionIds":[
+                        "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+                    ],
+                    "operations":[
+                        {"operation":"[parameters('operation')]",
+                        "field":"[concat('tags[', parameters('tagName'), ']')]",
+                        "value":"[resourceGroup().tags[parameters('tagName')]]"
+                        }
+                    ]
+                }
+            }
+        }
+}
