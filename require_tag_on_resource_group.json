@@ -18,7 +18,7 @@
       ]
     },
     "then": {
-      "effect": "audit"
+      "effect": "[parameters('effect')]"
     }
   },
   "parameters": {
@@ -57,6 +57,21 @@
       ],
       "defaultValue": "123"
     },
+    "parameters": {
+      "effect": {
+          "type": "string",
+          "defaultValue": "Audit",
+          "allowedValues": [
+              "Audit",
+              "Deny",
+              "Disabled"
+          ],
+          "metadata": {
+              "displayName": "Effect",
+              "description": "The effect determines what happens when the policy rule is evaluated to match"
+          }
+      }
+  },
     "tagValue-02": {
       "type": "String",
       "metadata": {
