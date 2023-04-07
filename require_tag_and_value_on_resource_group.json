@@ -1,0 +1,102 @@
+{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+          },
+          {
+            "not": {
+              "field": "[concat('tags[', parameters('tagName-01'), ']')]",
+              "in": "[parameters('tagValues-01')]"
+            }
+          },
+            {
+            "not": {
+                "field": "[concat('tags[', parameters('tagName-02'), ']')]",
+                "in": "[parameters('tagValues-02')]"
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the audit policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "tagName-01": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Tag Name",
+          "description": "Name of the tag, such as 'environment'"
+        },
+        "allowedValues": [
+            "Agency"
+        ],
+        "defaultValue": "Agency"
+      },
+      "tagValues-01": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Tag Values",
+          "description": "Value of the tag, such as 'production'"
+        },
+        "allowedValues": [
+            "000",
+            "001",
+            "003",
+            "004",
+            "005",
+            "007",
+            "00A",
+            "00B",
+            "010",
+            "012",
+            "013",
+            "014",
+            "018",
+            "020",
+            "021",
+            "022"
+        ]
+      },
+      "tagName-02": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Tag Name 2",
+          "description": "Name of the tag, such as 'environment'"
+        },
+        "allowedValues": [
+            "CostCenter"
+        ],
+        "defaultValue": "CostCenter"
+      },
+      "tagValues-02": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Tag Values 2",
+          "description": "Value of the tag, such as 'production'"
+        },
+        "allowedValues": [
+            "mcdonalds",
+            "wendys",
+            "kfc"
+        ]
+      }
+    }
+  }
